@@ -1,5 +1,4 @@
 
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -113,5 +112,13 @@ STATIC_URL = '/static/'
 
 
 GRAPHENE = {
-    "SCHEMA": "net.schema.schema"
+    "SCHEMA": "net.schema.schema",
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
 }
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
